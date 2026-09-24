@@ -1,23 +1,43 @@
 {
   "name": "fs-watch-cli",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A CLI tool to watch file changes and run commands",
   "main": "dist/index.js",
   "bin": {
     "fs-watch-cli": "dist/index.js"
   },
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
+  "files": [
+    "dist",
+    "readme.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
   },
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "node --require ts-node/register tests/run-all.ts",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "cli",
+    "watch",
+    "watcher",
+    "file-watcher",
+    "nodemon"
+  ],
+  "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.2",
-    "yoctocolors": "^2.1.1",
-    "yoctocolors-cjs": "^2.1.2"
+    "chalk": "^4.1.2"
   },
   "devDependencies": {
-    "ts-node": "^10.0.0",
-    "typescript": "^5.0.0"
+    "@types/node": "^20.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
   }
 }
