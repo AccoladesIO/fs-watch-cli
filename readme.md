@@ -1,26 +1,26 @@
-# 📁 fs-watch-cli
+# 📁 stye
 
 > A lightweight CLI that watches files or folders and re-runs a command when something changes. Built with Node.js and TypeScript, with a single runtime dependency (`chalk`).
 
-`fs-watch-cli` is a small nodemon-style tool built to answer one question: *how do file watchers really work under the hood?* Watching, debouncing, glob matching, process-tree control and the recursive-watch fallback are all implemented in this repo on top of native Node.js modules.
+`stye` is a small nodemon-style tool built to answer one question: *how do file watchers really work under the hood?* Watching, debouncing, glob matching, process-tree control and the recursive-watch fallback are all implemented in this repo on top of native Node.js modules.
 
 ## 📦 Installation
 
 Requires **Node.js 18 or newer**.
 
 ```bash
-git clone https://github.com/your-username/fs-watch-cli
-cd fs-watch-cli
+git clone https://github.com/your-username/stye
+cd stye
 npm install      # also builds the project
-npm link         # makes `fs-watch-cli` available globally
+npm link         # makes `stye` available globally
 ```
 
 ## ⚙️ Usage
 
 ```
-fs-watch-cli [options] <path> <command...>
-fs-watch-cli [options] -w <path> [-w <path>...] <command...>
-fs-watch-cli [options] -- <command...>        # paths/command come from the config file
+stye [options] <path> <command...>
+stye [options] -w <path> [-w <path>...] <command...>
+stye [options] -- <command...>        # paths/command come from the config file
 ```
 
 Options go **before** the path or command; everything after them is the command. Quote the command if it contains shell characters such as `&&` or `|`.
@@ -28,10 +28,10 @@ Options go **before** the path or command; everything after them is the command.
 ### Examples
 
 ```bash
-fs-watch-cli ./src "npm run build"
-fs-watch-cli -w src -w tests -e ts,tsx --mode queue npm test
-fs-watch-cli --ignore "*.{log,tmp}" . node server.js      # restarts the server on change
-fs-watch-cli --verbose --timestamps ./src "npm run build"
+stye ./src "npm run build"
+stye -w src -w tests -e ts,tsx --mode queue npm test
+stye --ignore "*.{log,tmp}" . node server.js      # restarts the server on change
+stye --verbose --timestamps ./src "npm run build"
 ```
 
 ## 🧰 Options
@@ -86,7 +86,7 @@ Globs support `*`, `**`, `?`, `[abc]`, `[!abc]` and `{a,b}`.
 
 ## 🗂 Config file
 
-Instead of flags, put settings in `fs-watch.config.json` (or under an `"fsWatch"` key in `package.json`, or point at a file with `--config`). Then just run `fs-watch-cli`.
+Instead of flags, put settings in `stye.config.json` (or under an `"stye"` key in `package.json`, or point at a file with `--config`). Then just run `stye`.
 
 ```json
 {
@@ -101,7 +101,7 @@ Instead of flags, put settings in `fs-watch.config.json` (or under an `"fsWatch"
 
 Available keys: `watch`, `command`, `include`, `ext`, `ignore`, `defaultIgnore`, `debounce`, `mode`, `killTimeout`, `quiet`, `verbose`, `timestamps`, `color`, `keys`, `fallback`. Unknown keys are reported by name.
 
-CLI flags override the config file per key (lists are replaced, not merged). If the config supplies the paths, pass the command after `--`: `fs-watch-cli -- npm run lint`.
+CLI flags override the config file per key (lists are replaced, not merged). If the config supplies the paths, pass the command after `--`: `stye -- npm run lint`.
 
 ## 🚀 Behaviour
 

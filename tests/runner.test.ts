@@ -14,8 +14,8 @@ async function trace(mode: RunMode, count: number, gapMs: number, expected: stri
     const dir = makeTempDir();
     const out = join(dir, 'out.txt');
     writeFileSync(out, '');
-    process.env.FS_WATCH_TEST_OUT = out;
-    process.env.FS_WATCH_TEST_MS = String(RUN_MS);
+    process.env.STYE_TEST_OUT = out;
+    process.env.STYE_TEST_MS = String(RUN_MS);
     const runner = new CommandRunner({ command: WORKER_COMMAND, mode, killTimeoutMs: 1000, log: silentLogger });
     try {
         for (let i = 0; i < count; i++) {
@@ -47,8 +47,8 @@ test('stop() kills the running command and refuses later triggers', async () => 
     const dir = makeTempDir();
     const out = join(dir, 'out.txt');
     writeFileSync(out, '');
-    process.env.FS_WATCH_TEST_OUT = out;
-    process.env.FS_WATCH_TEST_MS = '600';
+    process.env.STYE_TEST_OUT = out;
+    process.env.STYE_TEST_MS = '600';
     const runner = new CommandRunner({ command: WORKER_COMMAND, mode: 'restart', killTimeoutMs: 1000, log: silentLogger });
     try {
         await runner.trigger();

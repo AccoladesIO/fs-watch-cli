@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * fs-watch-cli entry point. Contains no logic of its own: it only wires the
+ * stye entry point. Contains no logic of its own: it only wires the
  * argument parser, config loader, watchers, debouncer and command runner together.
  */
 import { parseArgs } from './cli/args';
@@ -85,7 +85,7 @@ function main(): void {
     } catch (err) {
         if (!(err instanceof UsageError)) throw err;
         bootLog.error(err?.message as string);
-        console.error('Run "fs-watch-cli --help" for usage.');
+        console.error('Run "stye --help" for usage.');
         process.exitCode = 2;
     }
 }

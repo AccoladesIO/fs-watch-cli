@@ -7,8 +7,8 @@ import { UsageError } from '../utils/errors';
 
 export const DEFAULT_DEBOUNCE_MS = 300;
 export const DEFAULT_KILL_TIMEOUT_MS = 3000;
-export const CONFIG_FILE_NAME = 'fs-watch.config.json';
-export const PACKAGE_JSON_KEY = 'fsWatch';
+export const CONFIG_FILE_NAME = 'stye.config.json';
+export const PACKAGE_JSON_KEY = 'stye';
 
 type Kind = 'string' | 'strings' | 'boolean' | 'number' | 'mode';
 
@@ -81,8 +81,8 @@ function readSettingsFile(file: string, lenient: boolean): UserSettings {
 /**
  * Looks for settings in this order (first hit wins):
  *   1. the file passed with --config
- *   2. ./fs-watch.config.json
- *   3. the "fsWatch" key in ./package.json
+ *   2. ./stye.config.json
+ *   3. the "stye" key in ./package.json
  */
 export function loadConfig(cwd: string, explicitPath?: string): UserSettings {
     if (explicitPath) {
