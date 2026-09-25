@@ -23,7 +23,7 @@ export function recordingLogger(): Logger & { calls: Record<string, string[]> } 
     return logger;
 }
 
-export const makeTempDir = (): string => mkdtempSync(join(tmpdir(), 'fs-watch-test-'));
+export const makeTempDir = (): string => mkdtempSync(join(tmpdir(), 'stye-test-'));
 export const removeDir = (dir: string): void => rmSync(dir, { recursive: true, force: true });
 export const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
 

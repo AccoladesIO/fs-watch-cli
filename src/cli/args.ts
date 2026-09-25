@@ -20,9 +20,9 @@ function parseMode(value: string): RunMode {
 
 /**
  * Grammar:
- *   fs-watch-cli [options] <path> <command...>        classic form
- *   fs-watch-cli [options] -w <dir> [-w <dir>] <command...>
- *   fs-watch-cli [options] -- <command...>            paths come from --watch or the config file
+ *   stye [options] <path> <command...>        classic form
+ *   stye [options] -w <dir> [-w <dir>] <command...>
+ *   stye [options] -- <command...>            paths come from --watch or the config file
  *
  * Options must come first. Anything after them (or after "--") is the command.
  * The result only contains what the user actually typed; defaults and config

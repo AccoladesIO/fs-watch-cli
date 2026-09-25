@@ -5,7 +5,7 @@ All notable changes to this project are documented here.
 ## 1.2.0
 
 ### Added
-- Config file support: `fs-watch.config.json`, an `"fsWatch"` key in `package.json`, or `--config <file>`. CLI flags override config values.
+- Config file support: `stye.config.json`, an `"stye"` key in `package.json`, or `--config <file>`. CLI flags override config values.
 - Multiple watch paths (`-w/--watch`), extension filtering (`-e/--ext`) and glob patterns (`--include`, `--ignore`) supporting `*`, `**`, `?`, `[abc]` and `{a,b}`.
 - Run modes: `--mode restart | queue | concurrent`, and a configurable `--kill-timeout` for the SIGTERM to SIGKILL escalation.
 - Built-in fallback watcher that walks the directory tree, so recursive watching also works on Node 18 (Linux). Ignored folders are never descended into. Force it with `--fallback`.

@@ -2,12 +2,12 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { DEFAULT_DEBOUNCE_MS, DEFAULT_KILL_TIMEOUT_MS } from './config';
 
-export const HELP_TEXT = `fs-watch-cli - run a command whenever files change
+export const HELP_TEXT = `stye - run a command whenever files change
 
 Usage:
-  fs-watch-cli [options] <path> <command...>
-  fs-watch-cli [options] -w <path> [-w <path>...] <command...>
-  fs-watch-cli [options] -- <command...>        (paths/command from the config file)
+  stye [options] <path> <command...>
+  stye [options] -w <path> [-w <path>...] <command...>
+  stye [options] -- <command...>        (paths/command from the config file)
 
 Watching:
   -w, --watch <path>     File or folder to watch; repeat for several
@@ -40,9 +40,9 @@ segment ("*.log"); with a "/" it is anchored to the watched folder ("src/**/*.tm
 Keys while running: r = rerun now, c = clear screen, q = quit.
 
 Examples:
-  fs-watch-cli ./src "npm run build"
-  fs-watch-cli -w src -w tests -e ts --mode queue npm test
-  fs-watch-cli --ignore "*.{log,tmp}" . node server.js`;
+  stye ./src "npm run build"
+  stye -w src -w tests -e ts --mode queue npm test
+  stye --ignore "*.{log,tmp}" . node server.js`;
 
 export function readVersion(): string {
     try {

@@ -18,14 +18,14 @@ function withDir(files: Record<string, string>, body: (dir: string) => void): vo
     }
 }
 
-test('loads fs-watch.config.json and normalises a string to an array', () => {
-    withDir({ 'fs-watch.config.json': '{"$schema":"x","watch":"src","command":"npm test","debounce":50}' }, (dir) => {
+test('loads stye.config.json and normalises a string to an array', () => {
+    withDir({ 'stye.config.json': '{"$schema":"x","watch":"src","command":"npm test","debounce":50}' }, (dir) => {
         assert.deepEqual(loadConfig(dir), { watch: ['src'], command: 'npm test', debounce: 50 });
     });
 });
 
-test('falls back to the "fsWatch" key in package.json', () => {
-    withDir({ 'package.json': '{"name":"x","fsWatch":{"mode":"queue"}}' }, (dir) => {
+test('falls back to the "stye" key in package.json', () => {
+    withDir({ 'package.json': '{"name":"x","stye":{"mode":"queue"}}' }, (dir) => {
         assert.deepEqual(loadConfig(dir), { mode: 'queue' });
     });
 });
@@ -43,13 +43,13 @@ test('--config points at an explicit file and must exist', () => {
 });
 
 test('a broken explicit config file names the file', () => {
-    withDir({ 'fs-watch.config.json': '{ nope' }, (dir) => {
-        assert.throws(() => loadConfig(dir), { name: 'UsageError', message: /fs-watch\.config\.json/ });
+    withDir({ 'stye.config.json': '{ nope' }, (dir) => {
+        assert.throws(() => loadConfig(dir), { name: 'UsageError', message: /stye\.config\.json/ });
     });
 });
 
 test('unknown keys and wrong types are rejected with the key name', () => {
-    const load = (json: string) => withDir({ 'fs-watch.config.json': json }, (dir) => loadConfig(dir));
+    const load = (json: string) => withDir({ 'stye.config.json': json }, (dir) => loadConfig(dir));
     assert.throws(() => load('{"colour":true}'), { name: 'UsageError', message: /unknown setting "colour"/ });
     assert.throws(() => load('{"debounce":-1}'), { name: 'UsageError', message: /"debounce"/ });
     assert.throws(() => load('{"mode":"fast"}'), { name: 'UsageError', message: /one of: restart/ });
